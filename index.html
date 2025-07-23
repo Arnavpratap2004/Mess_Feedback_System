@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Feedback Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Mess<span>Feedback</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#" id="login-link">Login</a></li>
+                <li><a href="#" id="signup-link">Sign Up</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Simplify Mess Management</h1>
+                <p>A comprehensive platform for students to provide feedback and administrators to analyze data for better mess services.</p>
+                <div class="cta-buttons">
+                    <button id="student-cta" class="btn btn-primary">Student Login</button>
+                    <button id="admin-cta" class="btn btn-secondary">Admin Login</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="Screenshot 2025-03-27 225429.png" alt="Mess Management System">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Easy Feedback</h3>
+                    <p>Simple and intuitive feedback forms for students to share their mess experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Data Analysis</h3>
+                    <p>Comprehensive reporting tools for administrators to analyze feedback data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Quick Response</h3>
+                    <p>Efficient system for addressing student concerns and implementing improvements.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Containers -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-target="student-login">Student Login</button>
+                <button class="auth-tab" data-target="admin-login">Admin Login</button>
+            </div>
+            
+            <!-- Student Login Form -->
+            <div id="student-login" class="auth-form active">
+                <h2>Student Login</h2>
+                <form id="student-login-form">
+                    <div class="form-group">
+                        <label for="student-reg-no">Registration Number</label>
+                        <input type="text" id="student-reg-no" placeholder="e.g., 23BCE2354" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-password">Password</label>
+                        <input type="password" id="student-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="form-footer">Don't have an account? <a href="#" id="student-signup-link">Sign up here</a></p>
+            </div>
+            
+            <!-- Admin Login Form -->
+            <div id="admin-login" class="auth-form">
+                <h2>Admin Login</h2>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="admin-id">Employee ID</label>
+                        <input type="text" id="admin-id" placeholder="e.g., EMP001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="form-footer">Don't have an account? <a href="#" id="admin-signup-link">Sign up here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-target="student-signup">Student Signup</button>
+                <button class="auth-tab" data-target="admin-signup">Admin Signup</button>
+            </div>
+            
+            <!-- Student Signup Form -->
+            <div id="student-signup" class="auth-form active">
+                <h2>Student Registration</h2>
+                <form id="student-signup-form">
+                    <div class="form-group">
+                        <label for="student-name">Full Name</label>
+                        <input type="text" id="student-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-reg-no-signup">Registration Number</label>
+                        <input type="text" id="student-reg-no-signup" placeholder="e.g., 23BCE2354" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-password-signup">Password</label>
+                        <input type="password" id="student-password-signup" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-confirm-password">Confirm Password</label>
+                        <input type="password" id="student-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <p class="form-footer">Already have an account? <a href="#" id="student-login-link">Login here</a></p>
+            </div>
+            
+            <!-- Admin Signup Form -->
+            <div id="admin-signup" class="auth-form">
+                <h2>Admin Registration</h2>
+                <form id="admin-signup-form">
+                    <div class="form-group">
+                        <label for="admin-name">Full Name</label>
+                        <input type="text" id="admin-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-id-signup">Employee ID</label>
+                        <input type="text" id="admin-id-signup" placeholder="e.g., EMP001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password-signup">Password</label>
+                        <input type="password" id="admin-password-signup" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-confirm-password">Confirm Password</label>
+                        <input type="password" id="admin-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <p class="form-footer">Already have an account? <a href="#" id="admin-login-link">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Mess Feedback</h3>
+                <p>Improving mess management through feedback</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" id="footer-login">Login</a></li>
+                    <li><a href="#" id="footer-signup">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mess Feedback. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Student Feedback Form Page (Hidden initially) -->
+    <div id="feedback-form-page" class="page hidden">
+        <div class="page-header">
+            <h1>Mess Feedback Form</h1>
+            <button id="logout-btn" class="btn btn-secondary">Logout</button>
+        </div>
+        <div class="form-container">
+            <form id="mess-feedback-form">
+                <div class="form-group">
+                    <label for="feedback-reg-no">Registration Number</label>
+                    <input type="text" id="feedback-reg-no" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-name">Name of Student</label>
+                    <input type="text" id="feedback-name" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-block">Block</label>
+                    <input type="text" id="feedback-block" placeholder="Enter your block" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-room">Room Number</label>
+                    <input type="text" id="feedback-room" placeholder="Enter your room number" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-mess-name">Name of Mess</label>
+                    <input type="text" id="feedback-mess-name" placeholder="Enter mess name" required>
+                </div>
+                <div class="form-group">
+                    <label>Type of Mess</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="mess-type" value="Veg" required>
+                            Veg
+                        </label>
+                        <label>
+                            <input type="radio" name="mess-type" value="Non-Veg">
+                            Non-Veg
+                        </label>
+                        <label>
+                            <input type="radio" name="mess-type" value="Special">
+                            Special
+                        </label>
+                        <label>
+                            <input type="radio" name="mess-type" value="Night mess">
+                            Night mess
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="category" value="Quality" required>
+                            Quality
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="Quantity">
+                            Quantity
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="Hygiene">
+                            Hygiene
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="Mess timing">
+                            Mess timing
+                        </label>
+                        <label>
+                            <input type="radio" name="category" value="Others">
+                            Others
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-suggestion">Suggestions/Improvements/Feedbacks</label>
+                    <input type="text" id="feedback-suggestion" placeholder="Enter your suggestion" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-comments">Comments</label>
+                    <textarea id="feedback-comments" rows="4" placeholder="Enter detailed comments" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-proof">Proof (PDF/DOC/JPG)</label>
+                    <input type="file" id="feedback-proof" accept=".pdf,.doc,.docx,.jpg,.jpeg">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Page (Hidden initially) -->
+    <div id="admin-dashboard-page" class="page hidden">
+        <div class="page-header">
+            <h1>Admin Dashboard</h1>
+            <button id="admin-logout-btn" class="btn btn-secondary">Logout</button>
+        </div>
+        <div class="dashboard-container">
+            <div class="dashboard-sidebar">
+                <h3>Filter Options</h3>
+                <div class="filter-group">
+                    <label for="filter-student">Student Registration No.</label>
+                    <input type="text" id="filter-student" placeholder="e.g., 23BCE2354">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-mess">Mess Name</label>
+                    <input type="text" id="filter-mess" placeholder="Enter mess name">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-block">Block</label>
+                    <input type="text" id="filter-block" placeholder="Enter block">
+                </div>
+                <div class="filter-group">
+                    <label>Date Range</label>
+                    <input type="date" id="filter-start-date">
+                    <input type="date" id="filter-end-date">
+                </div>
+                <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+                <button id="reset-filters" class="btn btn-secondary">Reset</button>
+                
+                <div class="export-options">
+                    <h3>Export Options</h3>
+                    <button id="export-excel" class="btn btn-secondary">Export to Excel</button>
+                    <button id="export-pdf" class="btn btn-secondary">Export to PDF</button>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <h2>Feedback Reports</h2>
+                <div class="feedback-summary">
+                    <div class="summary-card">
+                        <h3>Total Feedback</h3>
+                        <p id="total-feedback">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>This Week</h3>
+                        <p id="weekly-feedback">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>This Month</h3>
+                        <p id="monthly-feedback">0</p>
+                    </div>
+                </div>
+                <div class="feedback-table-container">
+                    <table id="feedback-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Student</th>
+                                <th>Reg. No.</th>
+                                <th>Mess</th>
+                                <th>Block</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedback-data">
+                            <!-- Table data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content success-content">
+            <span class="close-button">&times;</span>
+            <div class="success-icon">✓</div>
+            <h2 id="success-title">Success!</h2>
+            <p id="success-message">Operation completed successfully.</p>
+            <button id="success-ok" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <!-- Feedback Detail Modal -->
+    <div id="feedback-detail-modal" class="modal">
+        <div class="modal-content detail-content">
+            <span class="close-button">&times;</span>
+            <h2>Feedback Details</h2>
+            <div id="feedback-detail-content">
+                <!-- Details will be populated by JavaScript -->
+            </div>
+            <button id="detail-close" class="btn btn-secondary">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
