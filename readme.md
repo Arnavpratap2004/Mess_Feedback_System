@@ -1,33 +1,247 @@
-Mess Feedback System
-Overview
-The Mess Feedback System is a web-based platform for collecting and analyzing student cafeteria (mess) feedback. Students can register/login and submit feedback on their mess experience, specifying details such as mess type, living block, and comments. Administrators can log in to a dashboard where they review all submissions, apply filters, and export data for reporting. The homepage hero section even describes it as “a comprehensive platform for students to provide feedback and administrators to analyze data for better mess services”. Overall, the system aims to streamline mess management by giving students a voice and empowering admins with tools to address issues and improve services.
-Features
-Student & Admin Authentication: The interface provides separate modals for student and admin login and sign-up. Users can click “Login” or “Sign Up” to open a modal with tabs for Student Login/Signup and Admin Login/Signup. Each form collects the necessary credentials (e.g. reg. number or employee ID, plus password) for authentication.
-Feedback Submission: Once logged in as a student, a feedback form is available (hidden until login) where the student’s name and reg. number are pre-filled. The form lets the student specify their block, room, mess name, and choose the type of mess (Veg, Non-Veg, Special, or Night Mess). They also select a feedback category (Quality, Quantity, Hygiene, Timing, or Others), and enter comments or suggestions. An optional proof file (PDF/DOC/JPG) can be attached for reference. Submitting the form triggers a success modal confirming that the feedback was submitted.
-Admin Dashboard: After admins log in, they see a dashboard with filter controls and data reports. The sidebar includes filters for student registration number, mess name, block, and date range. Admins can Apply or Reset these filters to refine the feedback list. Export buttons allow downloading the filtered feedback data to Excel or PDF files. Above the table, summary cards display key statistics such as Total Feedback, This Week, and This Month counts. The table below lists all matching feedback entries (ID, student, mess, category, date, etc.), and each entry has a “View” button to see detailed feedback in a modal.
-Responsive UI & Feedback Modals: The layout is responsive, adapting to smaller screens with a mobile-friendly navigation and stacked sections. Interactive feedback is given via modal dialogs and inline messages. For example, on successful operations (like submitting feedback) a success modal with a checkmark is shown, and errors are shown in a slide-in notification box. These modals and alerts ensure users receive clear confirmation or error messages during interactions.
-Tech Stack
-Frontend: Vanilla HTML, CSS, and JavaScript. The UI uses flexbox/grid layouts and custom CSS variables for colors.
-Backend API: The frontend communicates with a backend server via REST API calls. In this setup, the backend is assumed to run locally (e.g. at http://localhost:8080), as indicated by the API_URL in the JS code.
-Libraries: No large frameworks are used; everything is implemented with plain web technologies for simplicity and quick deployment.
-Installation & Setup
-Clone the repository:
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/mess-feedback-system.git
+# 📌 Mess Feedback System
+
+A minimal and efficient web platform for collecting and managing student mess feedback. Students can submit detailed feedback and administrators can view, filter, and export reports to improve mess operations.
+
+![Mess Feedback System](hero-preview.png)
+
+---
+
+## 🚀 Features
+
+### 👤 Student Side
+- Student sign-up and login
+- Pre-filled user details in the feedback form
+- Submit feedback with:
+  - Block & room number
+  - Mess name
+  - Mess type (Veg / Non-Veg / Special / Night Mess)
+  - Category (Quality, Quantity, Hygiene, Timing, Others)
+  - Comments / suggestions
+  - Optional proof/document upload
+- Success and error modals for better user interaction
+
+### 🛠️ Admin Side
+- Admin login with secure authentication
+- Dashboard with:
+  - Total Feedback count
+  - This Week's Feedback
+  - This Month's Feedback
+- Advanced filters:
+  - Registration number
+  - Mess name
+  - Block
+  - Date range
+- Export filtered data to **Excel** or **PDF**
+- View full feedback details in a modal
+
+### 📱 UI & Experience
+- Modern, minimal dark-mode design
+- Glassmorphism cards and smooth animations
+- Fully responsive design
+- Floating labels for elegant forms
+- Light/Dark theme toggle
+- Lucide icons for professional look
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | HTML5, CSS3, Vanilla JavaScript |
+| **Backend** | Node.js, Express.js |
+| **Database** | MySQL |
+| **Icons** | Lucide Icons |
+| **Fonts** | Inter (Google Fonts) |
+
+### Backend Dependencies
+- `express` - Web framework
+- `mysql2` - MySQL database driver
+- `bcrypt` - Password hashing
+- `cors` - Cross-origin resource sharing
+- `express-session` - Session management
+- `exceljs` - Excel export
+- `pdfkit` - PDF generation
+
+---
+
+## 🔧 Installation & Setup
+
+### Prerequisites
+- Node.js (v14+)
+- MySQL Server
+- Git
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/<your-username>/mess-feedback-system.git
 cd mess-feedback-system
-Run a local server: The HTML/JS app should be served over HTTP. You can use a VS Code Live Server, Python’s http.server, or any simple HTTP server. For example, with Python:
-bash
-Copy
-Edit
-python3 -m http.server 8000
-Start the backend: Ensure your backend API server is running and listening on http://localhost:8080 (or adjust the API_URL in script.js to match your setup). Without the backend, the frontend will not be able to fetch or submit data.
-Open the app: In your browser, navigate to the server address (e.g. http://localhost:8000/index.html). You should see the Mess Feedback homepage.
-Usage
-As a Student: Click Sign Up to register with your name and registration number. After signing up, click Login and use your reg. number and password to log in. Once logged in, the feedback form appears. Enter your block, room, mess name, select mess type and category, write your comments/suggestions, attach any proof document, and submit. You’ll see a confirmation modal on success. You can then log out if needed.
-As an Admin: Click Login and enter your employee ID and password to access the admin dashboard. Here you’ll see a list of all feedback entries (initially unfiltered). Use the sidebar filters to narrow down by student, mess, block, or date. Click Apply Filters to update the list, or Reset to clear filters. The Export to Excel and Export to PDF buttons will download the currently filtered feedback data. Click View on any entry to see full details in a pop-up modal. Use the logout button to end your session when done.
-Folder Structure
-index.html – The main HTML page, containing the home content, login/signup modals, feedback form, and admin dashboard sections (mostly hidden until login).
-styles.css – All custom styles for layout, colors, and responsiveness (flexbox/grid layout, CSS variables, and media queries for mobile).
-script.js – JavaScript code to handle UI interactivity and API calls. This includes opening/closing modals, form submission handlers, fetching data from the backend, applying filters, and exporting data.
+```
+
+### 2. Setup the Database
+```sql
+CREATE DATABASE mess_feedback_system;
+USE mess_feedback_system;
+
+-- Run the SQL script
+SOURCE Backend/sql/database.txt;
+```
+
+Or import `Backend/sql/tables.sql` using MySQL Workbench.
+
+### 3. Configure Database Connection
+Edit `Backend/db/index.js`:
+```javascript
+const dbConfig = {
+    host: 'localhost',
+    user: 'root',          // Your MySQL username
+    password: 'root',      // Your MySQL password
+    database: 'mess_feedback_system'
+};
+```
+
+### 4. Install Backend Dependencies
+```bash
+cd Backend
+npm install
+```
+
+### 5. Start the Backend Server
+```bash
+npm start
+```
+Backend will run at: `http://localhost:8080`
+
+### 6. Start the Frontend Server
+```bash
+cd ..
+npx serve .
+```
+Frontend will run at: `http://localhost:3000`
+
+### 7. Open the App
+Navigate to: `http://localhost:3000`
+
+---
+
+## 📌 How to Use
+
+### Student Flow
+1. **Sign Up** → Create a new student account
+2. **Login** → Enter registration number and password
+3. **Fill Feedback Form** → Provide mess details and feedback
+4. **Attach Proof** (Optional) → Upload supporting documents
+5. **Submit** → View success confirmation
+6. **Logout** → End session
+
+### Admin Flow
+1. **Login** → Enter employee ID and password
+2. **View Dashboard** → See feedback statistics
+3. **Apply Filters** → Filter by block, mess, date range
+4. **Export Data** → Download as Excel or PDF
+5. **View Details** → Click to see full feedback
+6. **Logout** → End session
+
+---
+
+## 📁 Folder Structure
+
+```
+mess-feedback-system/
+│
+├── index.html          # Main UI with all pages
+├── styles.css          # Modern CSS with dark mode
+├── script.js           # Frontend logic + API calls
+├── hero-preview.png    # Dashboard preview image
+├── readme.md           # This file
+│
+└── Backend/
+    ├── index.js        # Express server entry point
+    ├── package.json    # Node dependencies
+    │
+    ├── db/
+    │   └── index.js    # Database connection
+    │
+    ├── routes/
+    │   ├── authRoutes.js      # Auth endpoints
+    │   └── feedbackRoutes.js  # Feedback endpoints
+    │
+    ├── controller/
+    │   ├── authController.js      # Auth logic
+    │   └── feedbackController.js  # Feedback logic
+    │
+    ├── models/
+    │   ├── student.js    # Student model
+    │   ├── admin.js      # Admin model
+    │   └── feedback.js   # Feedback model
+    │
+    └── sql/
+        ├── database.txt  # Database schema
+        └── tables.sql    # Full SQL dump
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/student/register` | Register new student |
+| POST | `/auth/student/login` | Student login |
+| POST | `/auth/admin/register` | Register new admin |
+| POST | `/auth/admin/login` | Admin login |
+| POST | `/auth/logout` | Logout |
+| GET | `/auth/check-auth` | Check authentication status |
+
+### Feedback
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/feedback/submit` | Submit feedback |
+| GET | `/feedback/all` | Get all feedback (admin) |
+| GET | `/feedback/:id` | Get feedback by ID |
+| GET | `/feedback/export/excel` | Export to Excel |
+| GET | `/feedback/export/pdf` | Export to PDF |
+
+---
+
+## 🧩 Future Improvements
+
+- [ ] JWT authentication tokens
+- [ ] Cloud storage for proof documents
+- [ ] Student dashboard to track submitted feedback
+- [ ] Charts and analytics for admin
+- [ ] Role-based access control
+- [ ] Email notifications
+- [ ] Mobile app integration
+- [ ] Multi-language support
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! For suggestions or issues:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 📧 Contact
+
+For questions or feedback, reach out at: **your-email@example.com**
+
+---
+
+<p align="center">
+  Made with ❤️ for better mess management
+</p>

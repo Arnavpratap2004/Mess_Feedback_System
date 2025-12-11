@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mess Feedback Portal</title>
+    <meta name="description"
+        content="A simple and smart way to collect and analyze mess feedback. Streamline your mess management with our comprehensive feedback system.">
+    <title>Mess Feedback Portal | Student Feedback System</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
 </head>
+
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html">Mess<span>Feedback</span></a>
+                <a href="index.html">
+                    <i data-lucide="utensils" style="width: 24px; height: 24px;"></i>
+                    Mess<span>Feedback</span>
+                </a>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#" id="login-link">Login</a></li>
-                <li><a href="#" id="signup-link">Sign Up</a></li>
+                <li><a href="index.html" class="active"><i data-lucide="home"></i> Home</a></li>
+                <li><a href="#" id="login-link"><i data-lucide="log-in"></i> Login</a></li>
+                <li><a href="#" id="signup-link"><i data-lucide="user-plus"></i> Sign Up</a></li>
             </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <i data-lucide="sun" class="sun-icon"></i>
+                <i data-lucide="moon" class="moon-icon" style="display: none;"></i>
+            </button>
             <div class="burger">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -31,16 +50,23 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>Simplify Mess Management</h1>
-                <p>A comprehensive platform for students to provide feedback and administrators to analyze data for better mess services.</p>
+                <h1>Simplify <span>Mess Management</span></h1>
+                <p>A simple and smart way to collect and analyze mess feedback. Empower students to share their
+                    experience and help administrators make data-driven improvements.</p>
                 <div class="cta-buttons">
-                    <button id="student-cta" class="btn btn-primary">Student Login</button>
-                    <button id="admin-cta" class="btn btn-secondary">Admin Login</button>
+                    <button id="student-cta" class="btn btn-primary">
+                        <i data-lucide="user"></i>
+                        Student Login
+                    </button>
+                    <button id="admin-cta" class="btn btn-secondary">
+                        <i data-lucide="shield"></i>
+                        Admin Login
+                    </button>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="image-container">
-                    <img src="Screenshot 2025-03-27 225429.png" alt="Mess Management System">
+                    <img src="hero-preview.png" alt="Mess Management System Dashboard Preview">
                 </div>
             </div>
         </section>
@@ -48,21 +74,30 @@
         <!-- Features Section -->
         <section class="features">
             <h2>Key Features</h2>
+            <p>Everything you need for effective mess feedback management</p>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📝</div>
+                    <div class="feature-icon">
+                        <i data-lucide="message-square-text"></i>
+                    </div>
                     <h3>Easy Feedback</h3>
-                    <p>Simple and intuitive feedback forms for students to share their mess experience.</p>
+                    <p>Simple and intuitive feedback forms for students to share their mess experience with just a few
+                        clicks.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon">
+                        <i data-lucide="bar-chart-3"></i>
+                    </div>
                     <h3>Data Analysis</h3>
-                    <p>Comprehensive reporting tools for administrators to analyze feedback data.</p>
+                    <p>Comprehensive reporting tools for administrators to analyze feedback data and identify trends.
+                    </p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
+                    <div class="feature-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
                     <h3>Quick Response</h3>
-                    <p>Efficient system for addressing student concerns and implementing improvements.</p>
+                    <p>Efficient system for addressing student concerns and implementing improvements rapidly.</p>
                 </div>
             </div>
         </section>
@@ -73,40 +108,50 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <div class="auth-tabs">
-                <button class="auth-tab active" data-target="student-login">Student Login</button>
-                <button class="auth-tab" data-target="admin-login">Admin Login</button>
+                <button class="auth-tab active" data-target="student-login">
+                    <i data-lucide="user"></i> Student
+                </button>
+                <button class="auth-tab" data-target="admin-login">
+                    <i data-lucide="shield"></i> Admin
+                </button>
             </div>
-            
+
             <!-- Student Login Form -->
             <div id="student-login" class="auth-form active">
-                <h2>Student Login</h2>
+                <h2>Welcome Back</h2>
                 <form id="student-login-form">
                     <div class="form-group">
+                        <input type="text" id="student-reg-no" placeholder=" " required>
                         <label for="student-reg-no">Registration Number</label>
-                        <input type="text" id="student-reg-no" placeholder="e.g., 23BCE2354" required>
                     </div>
                     <div class="form-group">
+                        <input type="password" id="student-password" placeholder=" " required>
                         <label for="student-password">Password</label>
-                        <input type="password" id="student-password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i data-lucide="log-in"></i>
+                        Login
+                    </button>
                 </form>
                 <p class="form-footer">Don't have an account? <a href="#" id="student-signup-link">Sign up here</a></p>
             </div>
-            
+
             <!-- Admin Login Form -->
             <div id="admin-login" class="auth-form">
-                <h2>Admin Login</h2>
+                <h2>Admin Access</h2>
                 <form id="admin-login-form">
                     <div class="form-group">
+                        <input type="text" id="admin-id" placeholder=" " required>
                         <label for="admin-id">Employee ID</label>
-                        <input type="text" id="admin-id" placeholder="e.g., EMP001" required>
                     </div>
                     <div class="form-group">
+                        <input type="password" id="admin-password" placeholder=" " required>
                         <label for="admin-password">Password</label>
-                        <input type="password" id="admin-password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i data-lucide="log-in"></i>
+                        Login
+                    </button>
                 </form>
                 <p class="form-footer">Don't have an account? <a href="#" id="admin-signup-link">Sign up here</a></p>
             </div>
@@ -117,56 +162,66 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <div class="auth-tabs">
-                <button class="auth-tab active" data-target="student-signup">Student Signup</button>
-                <button class="auth-tab" data-target="admin-signup">Admin Signup</button>
+                <button class="auth-tab active" data-target="student-signup">
+                    <i data-lucide="user"></i> Student
+                </button>
+                <button class="auth-tab" data-target="admin-signup">
+                    <i data-lucide="shield"></i> Admin
+                </button>
             </div>
-            
+
             <!-- Student Signup Form -->
             <div id="student-signup" class="auth-form active">
-                <h2>Student Registration</h2>
+                <h2>Create Account</h2>
                 <form id="student-signup-form">
                     <div class="form-group">
+                        <input type="text" id="student-name" placeholder=" " required>
                         <label for="student-name">Full Name</label>
-                        <input type="text" id="student-name" required>
                     </div>
                     <div class="form-group">
+                        <input type="text" id="student-reg-no-signup" placeholder=" " required>
                         <label for="student-reg-no-signup">Registration Number</label>
-                        <input type="text" id="student-reg-no-signup" placeholder="e.g., 23BCE2354" required>
                     </div>
                     <div class="form-group">
+                        <input type="password" id="student-password-signup" placeholder=" " required>
                         <label for="student-password-signup">Password</label>
-                        <input type="password" id="student-password-signup" required>
                     </div>
                     <div class="form-group">
+                        <input type="password" id="student-confirm-password" placeholder=" " required>
                         <label for="student-confirm-password">Confirm Password</label>
-                        <input type="password" id="student-confirm-password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i data-lucide="user-plus"></i>
+                        Sign Up
+                    </button>
                 </form>
                 <p class="form-footer">Already have an account? <a href="#" id="student-login-link">Login here</a></p>
             </div>
-            
+
             <!-- Admin Signup Form -->
             <div id="admin-signup" class="auth-form">
                 <h2>Admin Registration</h2>
                 <form id="admin-signup-form">
                     <div class="form-group">
+                        <input type="text" id="admin-name" placeholder=" " required>
                         <label for="admin-name">Full Name</label>
-                        <input type="text" id="admin-name" required>
                     </div>
                     <div class="form-group">
+                        <input type="text" id="admin-id-signup" placeholder=" " required>
                         <label for="admin-id-signup">Employee ID</label>
-                        <input type="text" id="admin-id-signup" placeholder="e.g., EMP001" required>
                     </div>
                     <div class="form-group">
+                        <input type="password" id="admin-password-signup" placeholder=" " required>
                         <label for="admin-password-signup">Password</label>
-                        <input type="password" id="admin-password-signup" required>
                     </div>
                     <div class="form-group">
+                        <input type="password" id="admin-confirm-password" placeholder=" " required>
                         <label for="admin-confirm-password">Confirm Password</label>
-                        <input type="password" id="admin-confirm-password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i data-lucide="user-plus"></i>
+                        Sign Up
+                    </button>
                 </form>
                 <p class="form-footer">Already have an account? <a href="#" id="admin-login-link">Login here</a></p>
             </div>
@@ -177,14 +232,16 @@
         <div class="footer-content">
             <div class="footer-logo">
                 <h3>Mess Feedback</h3>
-                <p>Improving mess management through feedback</p>
+                <p>Improving mess management through intelligent feedback collection and analysis.</p>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#" id="footer-login">Login</a></li>
-                    <li><a href="#" id="footer-signup">Sign Up</a></li>
+                    <li><a href="index.html"><i data-lucide="home" style="width: 14px; height: 14px;"></i> Home</a></li>
+                    <li><a href="#" id="footer-login"><i data-lucide="log-in" style="width: 14px; height: 14px;"></i>
+                            Login</a></li>
+                    <li><a href="#" id="footer-signup"><i data-lucide="user-plus"
+                                style="width: 14px; height: 14px;"></i> Sign Up</a></li>
                 </ul>
             </div>
         </div>
@@ -196,90 +253,96 @@
     <!-- Student Feedback Form Page (Hidden initially) -->
     <div id="feedback-form-page" class="page hidden">
         <div class="page-header">
-            <h1>Mess Feedback Form</h1>
-            <button id="logout-btn" class="btn btn-secondary">Logout</button>
+            <h1><i data-lucide="message-square-text" style="width: 28px; height: 28px;"></i> Submit Feedback</h1>
+            <button id="logout-btn" class="btn btn-secondary">
+                <i data-lucide="log-out"></i>
+                Logout
+            </button>
         </div>
         <div class="form-container">
             <form id="mess-feedback-form">
                 <div class="form-group">
+                    <input type="text" id="feedback-reg-no" placeholder=" " required readonly>
                     <label for="feedback-reg-no">Registration Number</label>
-                    <input type="text" id="feedback-reg-no" required readonly>
                 </div>
                 <div class="form-group">
+                    <input type="text" id="feedback-name" placeholder=" " required readonly>
                     <label for="feedback-name">Name of Student</label>
-                    <input type="text" id="feedback-name" required readonly>
                 </div>
                 <div class="form-group">
+                    <input type="text" id="feedback-block" placeholder=" " required>
                     <label for="feedback-block">Block</label>
-                    <input type="text" id="feedback-block" placeholder="Enter your block" required>
                 </div>
                 <div class="form-group">
+                    <input type="text" id="feedback-room" placeholder=" " required>
                     <label for="feedback-room">Room Number</label>
-                    <input type="text" id="feedback-room" placeholder="Enter your room number" required>
                 </div>
                 <div class="form-group">
+                    <input type="text" id="feedback-mess-name" placeholder=" " required>
                     <label for="feedback-mess-name">Name of Mess</label>
-                    <input type="text" id="feedback-mess-name" placeholder="Enter mess name" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group static-label">
                     <label>Type of Mess</label>
                     <div class="radio-group">
                         <label>
                             <input type="radio" name="mess-type" value="Veg" required>
-                            Veg
+                            <span>Veg</span>
                         </label>
                         <label>
                             <input type="radio" name="mess-type" value="Non-Veg">
-                            Non-Veg
+                            <span>Non-Veg</span>
                         </label>
                         <label>
                             <input type="radio" name="mess-type" value="Special">
-                            Special
+                            <span>Special</span>
                         </label>
                         <label>
                             <input type="radio" name="mess-type" value="Night mess">
-                            Night mess
+                            <span>Night Mess</span>
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group static-label">
                     <label>Category</label>
                     <div class="radio-group">
                         <label>
                             <input type="radio" name="category" value="Quality" required>
-                            Quality
+                            <span>Quality</span>
                         </label>
                         <label>
                             <input type="radio" name="category" value="Quantity">
-                            Quantity
+                            <span>Quantity</span>
                         </label>
                         <label>
                             <input type="radio" name="category" value="Hygiene">
-                            Hygiene
+                            <span>Hygiene</span>
                         </label>
                         <label>
                             <input type="radio" name="category" value="Mess timing">
-                            Mess timing
+                            <span>Timing</span>
                         </label>
                         <label>
                             <input type="radio" name="category" value="Others">
-                            Others
+                            <span>Others</span>
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="feedback-suggestion">Suggestions/Improvements/Feedbacks</label>
-                    <input type="text" id="feedback-suggestion" placeholder="Enter your suggestion" required>
+                    <input type="text" id="feedback-suggestion" placeholder=" " required>
+                    <label for="feedback-suggestion">Suggestions/Improvements</label>
                 </div>
-                <div class="form-group">
-                    <label for="feedback-comments">Comments</label>
-                    <textarea id="feedback-comments" rows="4" placeholder="Enter detailed comments" required></textarea>
+                <div class="form-group textarea-group">
+                    <textarea id="feedback-comments" rows="4" placeholder=" " required></textarea>
+                    <label for="feedback-comments">Detailed Comments</label>
                 </div>
-                <div class="form-group">
-                    <label for="feedback-proof">Proof (PDF/DOC/JPG)</label>
+                <div class="form-group static-label">
+                    <label>Proof (Optional - PDF/DOC/JPG)</label>
                     <input type="file" id="feedback-proof" accept=".pdf,.doc,.docx,.jpg,.jpeg">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i data-lucide="send"></i>
+                    Submit Feedback
+                </button>
             </form>
         </div>
     </div>
@@ -287,14 +350,17 @@
     <!-- Admin Dashboard Page (Hidden initially) -->
     <div id="admin-dashboard-page" class="page hidden">
         <div class="page-header">
-            <h1>Admin Dashboard</h1>
-            <button id="admin-logout-btn" class="btn btn-secondary">Logout</button>
+            <h1><i data-lucide="layout-dashboard" style="width: 28px; height: 28px;"></i> Admin Dashboard</h1>
+            <button id="admin-logout-btn" class="btn btn-secondary">
+                <i data-lucide="log-out"></i>
+                Logout
+            </button>
         </div>
         <div class="dashboard-container">
             <div class="dashboard-sidebar">
-                <h3>Filter Options</h3>
+                <h3><i data-lucide="filter" style="width: 14px; height: 14px;"></i> Filter Options</h3>
                 <div class="filter-group">
-                    <label for="filter-student">Student Registration No.</label>
+                    <label for="filter-student">Student Reg. No.</label>
                     <input type="text" id="filter-student" placeholder="e.g., 23BCE2354">
                 </div>
                 <div class="filter-group">
@@ -307,31 +373,43 @@
                 </div>
                 <div class="filter-group">
                     <label>Date Range</label>
-                    <input type="date" id="filter-start-date">
+                    <input type="date" id="filter-start-date" style="margin-bottom: 8px;">
                     <input type="date" id="filter-end-date">
                 </div>
-                <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
-                <button id="reset-filters" class="btn btn-secondary">Reset</button>
-                
+                <button id="apply-filters" class="btn btn-primary">
+                    <i data-lucide="search"></i>
+                    Apply Filters
+                </button>
+                <button id="reset-filters" class="btn btn-secondary">
+                    <i data-lucide="refresh-cw"></i>
+                    Reset
+                </button>
+
                 <div class="export-options">
-                    <h3>Export Options</h3>
-                    <button id="export-excel" class="btn btn-secondary">Export to Excel</button>
-                    <button id="export-pdf" class="btn btn-secondary">Export to PDF</button>
+                    <h3><i data-lucide="download" style="width: 14px; height: 14px;"></i> Export Options</h3>
+                    <button id="export-excel" class="btn btn-secondary">
+                        <i data-lucide="file-spreadsheet"></i>
+                        Export to Excel
+                    </button>
+                    <button id="export-pdf" class="btn btn-secondary">
+                        <i data-lucide="file-text"></i>
+                        Export to PDF
+                    </button>
                 </div>
             </div>
             <div class="dashboard-content">
                 <h2>Feedback Reports</h2>
                 <div class="feedback-summary">
                     <div class="summary-card">
-                        <h3>Total Feedback</h3>
+                        <h3><i data-lucide="message-square" style="width: 16px; height: 16px;"></i> Total Feedback</h3>
                         <p id="total-feedback">0</p>
                     </div>
                     <div class="summary-card">
-                        <h3>This Week</h3>
+                        <h3><i data-lucide="calendar" style="width: 16px; height: 16px;"></i> This Week</h3>
                         <p id="weekly-feedback">0</p>
                     </div>
                     <div class="summary-card">
-                        <h3>This Month</h3>
+                        <h3><i data-lucide="calendar-days" style="width: 16px; height: 16px;"></i> This Month</h3>
                         <p id="monthly-feedback">0</p>
                     </div>
                 </div>
@@ -362,10 +440,15 @@
     <div id="success-modal" class="modal">
         <div class="modal-content success-content">
             <span class="close-button">&times;</span>
-            <div class="success-icon">✓</div>
+            <div class="success-icon">
+                <i data-lucide="check" style="width: 32px; height: 32px;"></i>
+            </div>
             <h2 id="success-title">Success!</h2>
             <p id="success-message">Operation completed successfully.</p>
-            <button id="success-ok" class="btn btn-primary">OK</button>
+            <button id="success-ok" class="btn btn-primary">
+                <i data-lucide="check"></i>
+                OK
+            </button>
         </div>
     </div>
 
@@ -373,14 +456,61 @@
     <div id="feedback-detail-modal" class="modal">
         <div class="modal-content detail-content">
             <span class="close-button">&times;</span>
-            <h2>Feedback Details</h2>
+            <h2><i data-lucide="file-text" style="width: 24px; height: 24px;"></i> Feedback Details</h2>
             <div id="feedback-detail-content">
                 <!-- Details will be populated by JavaScript -->
             </div>
-            <button id="detail-close" class="btn btn-secondary">Close</button>
+            <button id="detail-close" class="btn btn-secondary">
+                <i data-lucide="x"></i>
+                Close
+            </button>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = themeToggle.querySelector('.sun-icon');
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcons(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+        });
+
+        function updateThemeIcons(theme) {
+            if (theme === 'dark') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Re-initialize icons when modals open (for dynamically shown content)
+        const observer = new MutationObserver(() => {
+            lucide.createIcons();
+        });
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
+        });
+    </script>
 </body>
+
 </html>
