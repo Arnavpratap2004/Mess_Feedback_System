@@ -1,0 +1,11 @@
+{
+  "name": "mess-feedback-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static frontend for the Mess Feedback System",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "start": "node dev-server.mjs"
+  }
+}

@@ -1,6 +1,8 @@
 import Admin from '../models/admin.js';
 import Student from '../models/student.js';
-import bcrypt from 'bcrypt'; // For password hashing
+// bcryptjs is a pure-JS drop-in for bcrypt (same hash format), so it works on
+// Vercel's serverless runtime where native addons cannot be prebuilt.
+import bcrypt from 'bcryptjs'; // For password hashing
 
 class AuthController {
   // Admin Registration

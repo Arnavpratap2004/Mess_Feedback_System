@@ -1,10 +1,17 @@
 import mysql from 'mysql2/promise';
 
 const dbConfig = {
-    host: 'localhost',
-    user: 'root',          // Replace with your MySQL username
-    password: 'root', // Replace with your MySQL password
-    database: 'mess_feedback_system'
+    host: process.env.DB_HOST || 'localhost',
+    port: Number(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'root',
+    database: process.env.DB_NAME || 'mess_feedback_system',
+    // Most hosted MySQL providers require TLS.
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : undefined,
+    // Each serverless instance keeps its own pool, so keep it small to avoid
+    // exhausting the provider's connection limit.
+    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT) || 3,
+    waitForConnections: true
 };
 
 let pool;

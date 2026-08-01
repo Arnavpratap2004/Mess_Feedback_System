@@ -2,7 +2,7 @@
 
 A minimal and efficient web platform for collecting and managing student mess feedback. Students can submit detailed feedback and administrators can view, filter, and export reports to improve mess operations.
 
-![Mess Feedback System](hero-preview.png)
+![Mess Feedback System](frontend/hero-preview.png)
 
 ---
 
@@ -107,20 +107,28 @@ npm install
 ```
 
 ### 5. Start the Backend Server
+In one terminal:
 ```bash
-npm start
+cd Backend
+npm run dev
 ```
 Backend will run at: `http://localhost:8080`
 
 ### 6. Start the Frontend Server
+In a second terminal:
 ```bash
-cd ..
-npx serve .
+cd frontend
+npm run dev
 ```
-Frontend will run at: `http://localhost:3000`
+Frontend will run at: `http://localhost:3000` — no `npm install` needed.
 
 ### 7. Open the App
 Navigate to: `http://localhost:3000`
+
+> The frontend picks its backend automatically: on `localhost` it calls
+> `http://localhost:8080/api`, and anywhere else it calls the deployed API.
+> To develop against the deployed backend instead of MySQL, run
+> `cd server && npm run dev` in step 5 — it also listens on port 8080.
 
 ---
 
@@ -149,13 +157,20 @@ Navigate to: `http://localhost:3000`
 ```
 mess-feedback-system/
 │
-├── index.html          # Main UI with all pages
-├── styles.css          # Modern CSS with dark mode
-├── script.js           # Frontend logic + API calls
-├── hero-preview.png    # Dashboard preview image
 ├── readme.md           # This file
 │
-└── Backend/
+├── frontend/           # Static site — `npm run dev` (port 3000)
+│   ├── index.html      # Main UI with all pages
+│   ├── styles.css      # Modern CSS with dark mode
+│   ├── script.js       # Frontend logic + API calls
+│   ├── hero-preview.png    # Dashboard preview image
+│   └── dev-server.mjs  # Zero-dependency static server
+│
+├── server/             # Deployed backend: Next.js + Prisma Postgres
+│                       # `npm run dev` (port 8080). See server/README.md
+│
+└── Backend/            # Original Express + MySQL backend, kept for
+                        # offline demos — `npm run dev` (port 8080)
     ├── index.js        # Express server entry point
     ├── package.json    # Node dependencies
     │

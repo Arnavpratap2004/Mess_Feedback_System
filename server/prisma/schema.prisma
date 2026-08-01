@@ -1,0 +1,57 @@
+// Mess Feedback System — database schema.
+// Ported from the original MySQL dump in ../../Backend/sql/tables.sql.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "esm"
+}
+
+// Prisma 7 no longer accepts `url` here. The CLI reads it from prisma.config.ts
+// and the runtime client gets it in lib/prisma.js.
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id             Int    @id @default(autoincrement())
+  admin_name     String @db.VarChar(100)
+  employee_id    String @unique @db.VarChar(20)
+  admin_password String @db.VarChar(255)
+
+  @@map("admins")
+}
+
+model Student {
+  id               Int        @id @default(autoincrement())
+  student_name     String     @db.VarChar(100)
+  reg_no           String     @unique @db.VarChar(20)
+  student_password String     @db.VarChar(255)
+  feedbacks        Feedback[]
+
+  @@map("students")
+}
+
+model Feedback {
+  id             Int      @id @default(autoincrement())
+  student_reg_no String   @db.VarChar(20)
+  student_name   String   @db.VarChar(100)
+  block_name     String   @db.VarChar(50)
+  room_number    String   @db.VarChar(20)
+  mess_name      String   @db.VarChar(100)
+  // The original schema used MySQL ENUMs here. They are plain columns now and
+  // the allowed values are enforced in lib/validation.js, which keeps the exact
+  // wire format the frontend already sends ("Non-Veg", "Mess Timing").
+  mess_type      String   @db.VarChar(20)
+  category       String   @db.VarChar(20)
+  feedback       String
+  comments       String?
+  proof_path     String?  @db.VarChar(255)
+  submitted_at   DateTime @default(now())
+
+  student Student @relation(fields: [student_reg_no], references: [reg_no])
+
+  @@index([student_reg_no])
+  @@index([submitted_at])
+  @@map("feedback")
+}
